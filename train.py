@@ -16,6 +16,7 @@ def get_args():
     parser.add_argument('train_file')
     parser.add_argument('valid_file')
     parser.add_argument('token_file')
+    parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--emb_size', type=int, default=128)
     parser.add_argument('--hidden_size', type=int, default=128)
@@ -71,7 +72,7 @@ if __name__=='__main__':
         w = torch.load(args.load_weight)
         model.load_state_dict(w)
 
-    optim = torch.optim.Adam(model.parameters())
+    optim = torch.optim.Adam(model.parameters(), lr=args.lr)
 
 
     if not os.path.isdir(args.weight_dir):
