@@ -25,6 +25,7 @@ class Decoder(nn.Module):
         x = self.emb(x)
         x = torch.relu(x)
         x, hs = self.rnn(x, hs)
+        x = self.linear(x)
         return x, hs
 
 class Model(nn.Module):
